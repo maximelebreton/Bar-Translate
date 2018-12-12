@@ -7,4 +7,4 @@ Bar Translate is a Chrome Extension which allows you to translate anything and i
 
 
 
-> source code will bee soon available
+### source code will bee soon available (I have to refactor it first)
