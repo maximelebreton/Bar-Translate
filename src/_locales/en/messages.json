@@ -1,0 +1,79 @@
+{
+    "translate": {
+      "message": "translate"
+    },
+    "from": {
+      "message": "from"
+    },
+    "to": {
+      "message": "to"
+    },
+    "in": {
+      "message": "in"
+    },
+    "into": {
+      "message": "into"
+    },
+    "default": {
+      "message": "default"
+    },
+    "try": {
+      "message": "try"
+    },
+    "buy": {
+      "message": "buy"
+    },
+    "buyNow": {
+      "message": "Buy a license"
+    },
+    "buyLicense": {
+      "message": "Buy a license"
+    },
+    "buyLicenseNow": {
+      "message": "Buy a license now?"
+    },
+    "syncLicense": {
+      "message": "Link existing license"
+    },
+    "dontShowAnymore": {
+      "message": "Don't show anymore"
+    },
+    "showHelp": {
+      "message": "Show help & tips"
+    },
+    "helpAndTips": {
+      "message": "Help & tips"
+    },
+    "goHelp": {
+      "message": "Open help & tips"
+    },
+    "tryLoveBuy": {
+      "message": "Try > ♥ > Buy"
+    },
+    "ohYeah": {
+      "message": "Oh yeah!"
+    },
+    "ohNo": {
+      "message": "Oh no!"
+    },
+    "supportMessage": {
+      "message": "If you like Bar Translate, buy a license to support my work"
+    },
+    "translateSelection": {
+      "message": "Translate \"%s\" in $language$ on $service$",
+      "placeholders": {
+        "language" : {
+          "content" : "$1"
+        },
+        "service" : {
+          "content" : "$2"
+        }
+      }
+    },
+    "detected__smallcase": {
+      "message": "ᴅᴇᴛᴇᴄᴛᴇᴅ"
+    },
+    "translatedBy__smallcase": {
+      "message": "ᴛʀᴀɴsʟᴀᴛᴇᴅ ʙʏ"
+    }
+}
