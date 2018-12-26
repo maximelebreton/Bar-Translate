@@ -1,15 +1,16 @@
 
 import create from './create'
 import onClicked from './onClicked'
+import update from './update'
 
 
 const contextMenus = {
-
+  update: update
 }
 
 chrome.contextMenus.removeAll(function() {
 
-  contextMenus.translate = create.translate(),
+  contextMenus.translateSelection = create.translateSelection(),
   contextMenus.help = create.help(),
   contextMenus.buyLicense = create.buyLicense(),
   contextMenus.registerLicense = create.registerLicense()

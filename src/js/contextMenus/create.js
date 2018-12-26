@@ -8,12 +8,21 @@ const prefix = 'barTranslate.contextMenu.'
 
 const create = {
 
-  translate: () => {
+  translateSelection: () => {
     return chrome.contextMenus.create({
-      id: prefix + "translate",
+      id: prefix + "translateSelection",
       title: chrome.i18n.getMessage('translateSelection', [langNames[langUtils.getChromeLanguage()].name, translateService.current.name]),
       //title: `Translate \"%s\" in ${langNames[langUtils.getChromeLanguage()].name} on ${translateService.current.name}`,
       contexts: ["selection"]
+    })
+  },
+
+  translateChild: (value) => {
+    return chrome.contextMenus.create({
+      id: prefix + "translateChild",
+      title: value,
+      contexts: ["selection"],
+      parentMenuItemId: create.translateSelection
     })
   },
 

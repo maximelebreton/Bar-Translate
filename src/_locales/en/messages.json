@@ -59,13 +59,40 @@
     "supportMessage": {
       "message": "If you like Bar Translate, buy a license to support my work"
     },
-    "translateSelection": {
-      "message": "Translate \"%s\" in $language$ on $service$",
+    "close": {
+      "message": "Close"
+    },
+    "autoClose": {
+      "message": "Auto-close in $COUNTER$s",
       "placeholders": {
-        "language" : {
+        "COUNTER" : {
+          "content" : "$1"
+        }
+      }
+    },
+    "cancelAutoClose": {
+      "message": "Cancel auto close ($COUNTER$s)",
+      "placeholders": {
+        "COUNTER" : {
+          "content" : "$1"
+        }
+      }
+    },
+    "openInNewTab": {
+      "message": "$VALUE$ ↗",
+      "placeholders": {
+        "VALUE" : {
+          "content" : "$1"
+        }
+      }
+    },
+    "translateSelection": {
+      "message": "Translate \"%s\" in $LANGUAGE$",
+      "placeholders": {
+        "LANGUAGE" : {
           "content" : "$1"
         },
-        "service" : {
+        "SERVICE" : {
           "content" : "$2"
         }
       }
@@ -75,5 +102,8 @@
     },
     "translatedBy__smallcase": {
       "message": "ᴛʀᴀɴsʟᴀᴛᴇᴅ ʙʏ"
+    },
+    "copyToClipboard": {
+      "message": "Copy to clipboard"
     }
 }

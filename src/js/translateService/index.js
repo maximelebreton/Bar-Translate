@@ -47,7 +47,13 @@ translateService.fetchRetry = (sourceLanguage, targetLanguage, query, retries = 
 
   return fetch(translateService.current.getUrl(sourceLanguage, targetLanguage, query), {
     method: 'get'
-  }).catch(function(error) {
+  }).then((response) => {
+    if (!response.ok) {
+      console.error(response)
+      throw Error(response.statusText);
+    }
+    return response;
+  }).catch((error) => {
     console.info('Retries left:' + (retries))
     if (retries === 0) throw {
       error: error,

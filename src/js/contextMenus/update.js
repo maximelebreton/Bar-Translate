@@ -1,17 +1,15 @@
 import contextMenus from './index'
-import actions from '../actions'
-import licensing from '../licensing'
 import langUtils from '../utils/lang'
 import notifications from '../notifications'
 import translateService from '../translateService'
 
-export default chrome.contextMenus.onClicked.addListener(function (info, tab) {
+const update = {
 
+  translateSelection: (selectionText) => {
 
-  if (info.menuItemId === contextMenus.translateSelection) {
     let targetLanguage = langUtils.getChromeLanguage()
     //actions.openTranslationInSite(null, targetLanguage, info.selectionText)
-    translateService.getTranslation('', targetLanguage, info.selectionText)
+    translateService.getTranslation('', targetLanguage, selectionText)
     .then(data => {
       //clearInterval(spinner.current)
       let {sourceLanguage, targetLanguage, query, translations} = data
@@ -23,19 +21,14 @@ export default chrome.contextMenus.onClicked.addListener(function (info, tab) {
         targetLanguage: targetLanguage,
         query: query
       }
-      notifications.translation.params = params
-
-      notifications.show('translation', params)
+      return chrome.contextMenus.update(contextMenus.translateSelection, {
+        "title": params.translatedText,
+      })
     })
-  }
-  if (info.menuItemId === contextMenus.help) {
-    actions.openHelpPage()
-  }
-  if (info.menuItemId === contextMenus.buyLicense) {
-    actions.openChromeWebstorePage()
-  }
-  if (info.menuItemId === contextMenus.registerLicense) {
-    licensing.registerLicense()
+
+
   }
 
-});
+}
+
+export default update

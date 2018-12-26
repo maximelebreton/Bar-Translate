@@ -8,6 +8,10 @@ const messages = {
   extensionName: "Bar Translate",
 
   notifications: {
+    translation: {
+
+
+    },
     help: {
       title: getMessage('helpAndTips'),
       buttons: {

@@ -16,6 +16,14 @@ const textUtils = {
 
   getWithoutFirstWordAfterSpace(value) {
     return value.substr(value.indexOf(" ")+1, value.length)
+  },
+
+  copyToClipboard(str, mimeType = 'text/plain') {
+    document.oncopy = function(event) {
+      event.clipboardData.setData(mimeType, str);
+      event.preventDefault();
+    };
+    document.execCommand("copy", false, null);
   }
 
 }

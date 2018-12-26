@@ -2,6 +2,7 @@ import notifications from './index'
 import actions from '../actions'
 import licensing from '../licensing'
 import storage from '../storage'
+import textUtils from '../utils/text'
 
 
 export default chrome.notifications.onButtonClicked.addListener((notificationId, buttonIndex) => {
@@ -29,5 +30,22 @@ export default chrome.notifications.onButtonClicked.addListener((notificationId,
       if (buttonIndex === 1) {
         actions.openHelpPage()
       }
+    }
+    if (notificationId === notifications.translation.id) {
+
+      /*if (buttonIndex === 0) {
+        //clearInterval(notifications.translation.interval)
+        chrome.notifications.clear(notifications.translation.id)
+      }*/
+      if (buttonIndex === 0) {
+        textUtils.copyToClipboard(notifications.translation.params.translatedText)
+        //chrome.notifications.clear(notifications.translation.id)
+      }
+      if (buttonIndex === 1) {
+        let {sourceLanguage, targetLanguage, query} = notifications.translation.params
+        actions.openTranslationInSite(sourceLanguage, targetLanguage, query)
+        chrome.notifications.clear(notifications.translation.id)
+      }
+
     }
 })

@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "minimum_chrome_version": "28",
   "background": {
-    "scripts": ["../dist/index.js", "../hot-reload.js"],
+    "scripts": ["background.js", "hot-reload.js"],
     "persistent": false
   },
   "default_locale": "en",
