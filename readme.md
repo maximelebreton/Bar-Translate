@@ -4,7 +4,3 @@
 
 Bar Translate is a Chrome Extension which allows you to translate anything and in any language directly in the address bar (also called Omnibox).
 
-
-
-
-### source code will bee soon available (I have to refactor it first)
