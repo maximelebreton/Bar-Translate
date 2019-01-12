@@ -26,6 +26,7 @@ const yandexService = () => {
     },
 
     getNormalizedData: (data) => {
+      console.info(data, 'data')
       const translations = data.text
       const detectedSourceLanguage = data.lang.split("-")[0]
       const normalizedData = translations.map(translation => {

@@ -30,11 +30,15 @@ const getLanguageSlices = (value) => {
     let languageSlice = languageName.toLowerCase().slice(0, value.length)
     let langName = lang
     let langSlice = langName.toLowerCase().slice(0, value.length)
+    let aliasName = langUtils.getAliasFromLang(lang)
+    let aliasSlice = aliasName ? aliasName.toLowerCase().slice(0, value.length) : ''
     let match = {
       languageName,
       languageSlice: '',
       langName,
-      langSlice: ''
+      langSlice: '',
+      aliasName,
+      aliasSlice: ''
     }
 
     if (value.toLowerCase() === languageSlice) {
@@ -43,7 +47,10 @@ const getLanguageSlices = (value) => {
     if (value.toLowerCase() === langSlice) {
       match.langSlice = langSlice
     }
-    if (match.languageSlice || match.langSlice) {
+    if (value.toLowerCase() === aliasSlice) {
+      match.aliasSlice = aliasSlice
+    }
+    if (match.languageSlice || match.langSlice || match.aliasSlice) {
       matches.push(match)
     }
   }
@@ -61,45 +68,52 @@ const getLanguagesSuggests = (value) => {
     let targetSlices = getLanguageSlices(targetValue)
 
     targetSlices.forEach((targetSlice) => {
-      let {languageName: targetLanguageName, languageSlice: targetLanguageSlice, langName: targetLangName, langSlice: targetLangSlice} = targetSlice
-      if (targetValue.toLowerCase() === targetLangSlice) {
+      let {languageName: targetLanguageName, languageSlice: targetLanguageSlice, langName: targetLangName, langSlice: targetLangSlice, aliasName: targetAliasName, aliasSlice: targetAliasSlice} = targetSlice
+      if (targetValue.toLowerCase() === targetLangSlice || targetValue.toLowerCase() === targetLanguageSlice || targetValue.toLowerCase() === targetAliasSlice) {
         let languageSuggest = {
           content: `${targetLangName} `,
-          description: `${textUtils.zeroWidthSpace}${messages.getLangSuggestDescription(targetLanguageName, targetLanguageSlice, targetLangName, targetLangSlice)}`
+          description: `${textUtils.zeroWidthSpace}${messages.getSuggestDescription(targetLanguageName, targetLanguageSlice, targetLangName, targetLangSlice, targetAliasName, targetAliasSlice)}`
         }
         languageSuggests.push(languageSuggest);
       }
-      if (targetValue.toLowerCase() === targetLanguageSlice) {
+      /*if (targetValue.toLowerCase() === targetLanguageSlice) {
         let languageSuggest = {
           content: `${targetLangName} `,
-          description: `${textUtils.zeroWidthSpace}${messages.getLanguageSuggestDescription(targetLanguageName, targetLanguageSlice, targetLangName, targetLangSlice)}`
+          description: `${textUtils.zeroWidthSpace}${messages.getSuggestDescription(targetLanguageName, targetLanguageSlice, targetLangName, targetLangSlice, targetAliasName, targetAliasSlice)}`
         }
         languageSuggests.push(languageSuggest);
       }
+      if (targetValue.toLowerCase() === targetAliasSlice) {
+        let languageSuggest = {
+          content: `${targetLangName} `,
+          description: `${textUtils.zeroWidthSpace}${messages.getSuggestDescription(targetLanguageName, targetLanguageSlice, targetLangName, targetLangSlice, targetAliasName, targetAliasSlice)}`
+        }
+        languageSuggests.push(languageSuggest);
+      }*/
     })
   }
   if (sourceValue && !targetValue) {
     let sourceSlices = getLanguageSlices(sourceValue)
 
     sourceSlices.forEach((sourceSlice) => {
-      let {languageName: sourceLanguageName, languageSlice: sourceLanguageSlice, langName: sourceLangName, langSlice: sourceLangSlice} = sourceSlice
+      let {languageName: sourceLanguageName, languageSlice: sourceLanguageSlice, langName: sourceLangName, langSlice: sourceLangSlice, aliasName: sourceAliasName, aliasSlice: sourceAliasSlice} = sourceSlice
 
-      if (sourceValue.toLowerCase() === sourceLangSlice) {
+      if (sourceValue.toLowerCase() === sourceLangSlice || sourceValue.toLowerCase() === sourceLanguageSlice || sourceValue.toLowerCase() === sourceAliasSlice) {
 
         let languageSuggest = {
           content: `${sourceLangName}>${textUtils.zeroWidthSpace}`,
-          description: `${textUtils.zeroWidthSpace}${messages.getFromLangSuggestDescription(sourceLanguageName, sourceLanguageSlice, sourceLangName, sourceLangSlice)}`
+          description: `${textUtils.zeroWidthSpace}${messages.getFromSuggestDescription(sourceLanguageName, sourceLanguageSlice, sourceLangName, sourceLangSlice, sourceAliasName, sourceAliasSlice)}`
         }
         languageSuggests.push(languageSuggest);
       }
-      if (sourceValue.toLowerCase() === sourceLanguageSlice) {
+      /*if (sourceValue.toLowerCase() === sourceLanguageSlice) {
 
         let languageSuggest = {
           content: `${sourceLangName}>${textUtils.zeroWidthSpace}`,
           description: `${textUtils.zeroWidthSpace}${messages.getFromLanguageSuggestDescription(sourceLanguageName, sourceLanguageSlice, sourceLangName, sourceLangSlice)}`
         }
         languageSuggests.push(languageSuggest);
-      }
+      }*/
     })
 
   }
@@ -108,22 +122,24 @@ const getLanguagesSuggests = (value) => {
     let targetSlices = getLanguageSlices(targetValue)
 
     sourceSlices.forEach((sourceSlice) => {
-      let {languageName: sourceLanguageName, languageSlice: sourceLanguageSlice, langName:sourceLangName, langSlice: sourceLangSlice} = sourceSlice
+      let {languageName: sourceLanguageName, languageSlice: sourceLanguageSlice, langName:sourceLangName, langSlice: sourceLangSlice, aliasName: sourceAliasName, aliasSlice: sourceAliasSlice} = sourceSlice
       targetSlices.forEach((targetSlice) => {
-        let {languageName: targetLanguageName, languageSlice: targetLanguageSlice, langName: targetLangName, langSlice: targetLangSlice} = targetSlice
-        let sourceParams = {languageName: sourceLanguageName, languageSlice: sourceLanguageSlice, langName: sourceLangName, langSlice: sourceLangSlice}
-        let targetParams = {languageName: targetLanguageName, languageSlice: targetLanguageSlice, langName: targetLangName, langSlice: targetLangSlice}
+        let {languageName: targetLanguageName, languageSlice: targetLanguageSlice, langName: targetLangName, langSlice: targetLangSlice, aliasName: targetAliasName, aliasSlice: targetAliasSlice} = targetSlice
+        let sourceParams = {languageName: sourceLanguageName, languageSlice: sourceLanguageSlice, langName: sourceLangName, langSlice: sourceLangSlice, aliasName: sourceAliasName, aliasSlice: sourceAliasSlice}
+        let targetParams = {languageName: targetLanguageName, languageSlice: targetLanguageSlice, langName: targetLangName, langSlice: targetLangSlice, aliasName: targetAliasName, aliasSlice: targetAliasSlice}
 
         if (
-          (sourceValue.toLowerCase() === sourceLangSlice || sourceValue.toLowerCase() === sourceLanguageSlice)
+          (sourceValue.toLowerCase() === sourceLangSlice || sourceValue.toLowerCase() === sourceLanguageSlice || sourceValue.toLowerCase() === sourceAliasSlice)
           &&
-          (targetValue.toLowerCase() === targetLangSlice || targetValue.toLowerCase() === targetLanguageSlice)
+          (targetValue.toLowerCase() === targetLangSlice || targetValue.toLowerCase() === targetLanguageSlice || sourceValue.toLowerCase() === targetAliasSlice)
         ) {
-          let languageSuggest = {
-            content: `${sourceLangName}>${targetLangName} `,
-            description: `${textUtils.zeroWidthSpace}${messages.getFromToSuggestDescription(sourceParams, targetParams)}`
+          if (sourceLangName !== targetLangName) {
+            let languageSuggest = {
+              content: `${sourceLangName}>${targetLangName} `,
+              description: `${textUtils.zeroWidthSpace}${messages.getFromToSuggestDescription(sourceParams, targetParams)}`
+            }
+            languageSuggests.push(languageSuggest);
           }
-          languageSuggests.push(languageSuggest);
         }
 
       })
@@ -158,9 +174,16 @@ const onChange = (sourceLanguage, targetLanguage, query, isDefault, suggest) => 
   .catch(function(error) {
     console.log(error)
     clearInterval(spinner.current)
-    chrome.omnibox.setDefaultSuggestion({
-      description: messages.getErrorDescription(sourceLanguage, targetLanguage, query, translateService.current)
-    })
+    if (error.type === 'offline') {
+      chrome.omnibox.setDefaultSuggestion({
+        description: error.message
+      })
+    } else {
+      chrome.omnibox.setDefaultSuggestion({
+        description: messages.getErrorDescription(sourceLanguage, targetLanguage, query, translateService.current)
+      })
+    }
+
   })
 }
 
@@ -175,11 +198,10 @@ const onInputChangedListener = (text, suggest) => {
   messages.defaultDescription = messages.getDefaultDescription(sourceLanguage, targetLanguage, query, isDefault)
 
   clearInterval(spinner.current)
-
   if (query.length) {
     spinner.current = spinner.animate(function(indicator) {
       chrome.omnibox.setDefaultSuggestion({
-        description: `${messages.defaultDescription}${' '+indicator}`
+        description: `${messages.defaultDescription}${' '+indicator} <dim>${translateService.isRetrying ? 'Retrying...' : ''}</dim>`
       })
     })
   } else {

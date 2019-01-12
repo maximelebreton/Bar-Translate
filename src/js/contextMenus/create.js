@@ -11,8 +11,8 @@ const create = {
   translateSelection: () => {
     return chrome.contextMenus.create({
       id: prefix + "translateSelection",
-      title: chrome.i18n.getMessage('translateSelection', [langNames[langUtils.getChromeLanguage()].name, translateService.current.name]),
-      //title: `Translate \"%s\" in ${langNames[langUtils.getChromeLanguage()].name} on ${translateService.current.name}`,
+      title: chrome.i18n.getMessage('translateSelection', [langNames[langUtils.getBrowserLanguage()].name, translateService.current.name]),
+      //title: `Translate \"%s\" in ${langNames[langUtils.getBrowserLanguage()].name} on ${translateService.current.name}`,
       contexts: ["selection"]
     })
   },

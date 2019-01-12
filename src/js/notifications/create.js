@@ -1,41 +1,67 @@
 import notifications from './index'
 import licensing from '../licensing'
 import messages from '../messages'
+import langUtils from '../utils/lang'
 import langNames from '../../json/langNames.json'
+import langNativeNames from '../../json/langNativeNames.json'
+import helloInAllLanguages from '../../json/helloInAllLanguages.json'
+
+
 
 const create = {
 
   help: () => {
-    return chrome.notifications.create(notifications.help.id, {
-      type: 'basic',
-      iconUrl: 'images/icon@2x.png',
-      title: messages.notifications.help.title,
-      message: ``,
-      contextMessage: messages.extensionName,
-      silent: true,
-      requireInteraction: false,
-      buttons: [{
-        title: messages.notifications.help.buttons.alwaysHide.title
-      }, {
-        title: messages.notifications.help.buttons.goHelp.title
-      }]
+
+    let browserLang = langUtils.getBrowserLanguage()
+    let langHello = langUtils.getHelloFromLangOrAlias( browserLang )
+    let englishHello = 'Hello'
+    let hello = langHello
+
+    if (browserLang === 'en' || langHello === undefined) {
+      var zero = `'Bonjour' = Hello`
+      var one = `'fr Hello' = Bonjour`
+      var two = `'en Bonjour' = Hello`
+    } else {
+      var zero = `'${englishHello}' = ${langHello}`
+      var one = `'en ${langHello}' = ${englishHello}`
+      var two = `'${browserLang} ${englishHello}' = ${langHello}`
+    }
+
+    chrome.notifications.clear(notifications.help.id, () => {
+      return chrome.notifications.create(notifications.help.id, {
+        type: 'basic',
+        iconUrl: 'images/icon@2x.png',
+        //title: messages.notifications.help.title,
+        title: 'Need help? Here some examples:',
+        message: `• ${one} \n• ${two} \n• 'de>en gift' = poison \n• 'chi' suggests to translate in Chinese`,
+        contextMessage: messages.extensionName,
+        silent: true,
+        requireInteraction: false,
+        buttons: [{
+          title: messages.notifications.help.buttons.alwaysHide.title
+        }, {
+          title: messages.notifications.help.buttons.goHelp.title
+        }]
+      })
     })
   },
 
   tryLoveBuy: () => {
-    return chrome.notifications.create(notifications.tryLoveBuy.id, {
-      type: 'basic',
-      iconUrl: 'images/square.png',
-      title: messages.notifications.tryLoveBuy.title,
-      message: messages.notifications.tryLoveBuy.message,
-      contextMessage: messages.extensionName,
-      silent: true,
-      requireInteraction: false,
-      buttons: [{
-        title: messages.notifications.tryLoveBuy.buttons.buy.title
-      }, {
-        title: messages.notifications.tryLoveBuy.buttons.sync.title
-      }]
+    chrome.notifications.clear(notifications.tryLoveBuy.id, () => {
+      return chrome.notifications.create(notifications.tryLoveBuy.id, {
+        type: 'basic',
+        iconUrl: 'images/square.png',
+        title: messages.notifications.tryLoveBuy.title,
+        message: messages.notifications.tryLoveBuy.message,
+        contextMessage: messages.extensionName,
+        silent: true,
+        requireInteraction: false,
+        buttons: [{
+          title: messages.notifications.tryLoveBuy.buttons.buy.title
+        }, {
+          title: messages.notifications.tryLoveBuy.buttons.sync.title
+        }]
+      })
     })
   },
 
@@ -102,7 +128,7 @@ const create = {
         title: '',
         message: message,
         //contextMessage: `Bar Translate \nᴛʀᴀɴsʟᴀᴛᴇᴅ ʙʏ ${translateService.smallcase}`,
-        contextMessage: `Translated ${sourceLanguage ? `from ${langNames[sourceLanguage].name} (ᴅᴇᴛᴇᴄᴛᴇᴅ) into` : 'in'} ${langNames[targetLanguage].name} by ${translateService.smallcase}`,
+        contextMessage: `Translated ${sourceLanguage ? `from ${langUtils.getLangOrAliasName(sourceLanguage)} (ᴅᴇᴛᴇᴄᴛᴇᴅ) into` : 'in'} ${langUtils.getLangOrAliasName(targetLanguage)} by ${translateService.smallcase}`,
         silent: true,
         requireInteraction: true,
         buttons: [{

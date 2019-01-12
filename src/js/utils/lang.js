@@ -1,47 +1,72 @@
 import langNames from '../../json/langNames.json'
 import langSupport from '../../json/langSupport.json'
 import langAliases from '../../json/langAliases.json'
+import helloInAllLanguages from '../../json/hello.json'
 import textUtils from './text'
 
 const langUtils = {
 
-  testExistingLanguage(value) {
+  /*testExistingLanguage(value) {
     return Object.keys(langNames).some(function(key) {
       if (key && value) {
         return key.toLowerCase() === value.toLowerCase();
       }
     })
-  },
+  },*/
 
-  testLanguageAlias(value) {
+  /*testLanguageAlias(value) {
     return Object.keys(langAliases).some(function(key) {
       if (key && value) {
         return key.toLowerCase() === value.toLowerCase()
       }
     })
-  },
+  },*/
 
-  testSupportedLanguage(value) {
+  /*testSupportedLanguage(value) {
     let hasAlias = langUtils.testLanguageAlias(value)
-    let language = hasAlias ? langAliases[value].alias : value
+    let language = hasAlias ? langAliases[value].lang : value
     //return supportedLanguages.some(language)
-  },
+  },*/
 
-  getChromeLanguage() {
+  getBrowserLanguage() {
     let uiLanguage = chrome.i18n.getUILanguage()
     return uiLanguage.split('-')[0]
   },
 
-  getLangAlias(value) {
+  /*getLangAlias(value) {
     let hasAlias = langUtils.testLanguageAlias(value)
-    return hasAlias ? langAliases[value].alias : value
+    return hasAlias ? langAliases[value].lang : value
+  },*/
+
+  getLangFromAlias(value) {
+    return langAliases[value] ? langAliases[value].lang : undefined
+  },
+
+  getAliasFromLang(value) {
+    return Object.keys(langAliases).find(key => langAliases[key].lang === value)
   },
 
   getSupportedLang(value) {
-    let candidate = langUtils.getLangAlias(value)
+    /*let candidate = langUtils.getLangAlias(value)
     return langSupport.find((item) => {
       return item === candidate
-    })
+    })*/
+    let lang = langUtils.getLangOrAliasResultFrom(value, langSupport)
+    return lang
+  },
+
+  getLangOrAliasResultFrom(value, json) {
+    let keys = Array.isArray(json) ? json : Object.keys(json)
+    let lang = keys.find(key => key === value)
+    if (!lang) {
+      lang = keys.find(key => key === langUtils.getLangFromAlias(value))
+    }
+    return Array.isArray(json) ? lang : json[lang]
+  },
+
+  getLangOrAliasName(value) {
+    let langEntry = langUtils.getLangOrAliasResultFrom(value, langNames)
+    return langEntry.name
   },
 
   getLanguagePair(value) {
@@ -76,7 +101,7 @@ const langUtils = {
 
     let isDefault = ifTargetLanguageExists ? false : true
     let query = ifTargetLanguageExists ? textUtils.getWithoutFirstWordAfterSpace(text) : text
-    let targetLanguage = ifTargetLanguageExists ? supportedTargetLang : langUtils.getChromeLanguage()
+    let targetLanguage = ifTargetLanguageExists ? supportedTargetLang : langUtils.getBrowserLanguage()
     let sourceLanguage = ifSourceLanguageExists ? supportedSourceLang : ''
 
     return {
@@ -125,6 +150,25 @@ const langUtils = {
       isDetectedSourceLanguage,
       resolvedSourceLanguage
     }
+  },
+
+
+  getHelloFromLangOrAlias(value) {
+    let helloItem
+    let langResult = helloInAllLanguages.filter(item => item.locale === value)
+    if (langResult.length) {
+      helloItem = langResult
+    } else {
+      let fromAliasResult = helloInAllLanguages.filter(item => item.locale === langUtils.getLangFromAlias(value))
+      if (fromAliasResult.length) {
+        helloItem = fromAliasResult
+      } else {
+        let fromLangResult = helloInAllLanguages.filter(item => item.locale === langUtils.getAliasFromLang(value))
+        helloItem = fromLangResult
+      }
+    }
+
+    return helloItem.length ? helloItem[0].string : undefined
   }
 
 }

@@ -9,7 +9,7 @@ export default chrome.contextMenus.onClicked.addListener(function (info, tab) {
 
 
   if (info.menuItemId === contextMenus.translateSelection) {
-    let targetLanguage = langUtils.getChromeLanguage()
+    let targetLanguage = langUtils.getBrowserLanguage()
     //actions.openTranslationInSite(null, targetLanguage, info.selectionText)
     translateService.getTranslation('', targetLanguage, info.selectionText)
     .then(data => {

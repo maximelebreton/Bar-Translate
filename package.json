@@ -1,32 +1,47 @@
 {
   "name": "bar-translate",
-  "version": "1.1.3",
+  "version": "1.1.0",
   "description": "",
   "scripts": {
-    "watch": "parcel watch src/background.js --out-dir dist --no-hmr",
-    "build": "parcel build src/background.js --out-dir dist --no-source-maps",
-    "test": "jest --watchAll"
+    "watch": "npm run clean-dist && npm run copy-hr && npm run copy-dev-manifest && cd .dev && npm run dev-watch",
+    "build": "npm run clean-dist && npm run copy-manifest && parcel build src/background.js --out-dir dist --no-source-maps && npm run zip",
+    "test": "jest --watchAll",
+    "clean-dist": "rimraf .\\dist\\**\\*",
+    "copy-manifest": "copy .\\src\\manifest.production.json .\\dist\\manifest.json",
+    "copy-hr": "copy .\\src\\hot-reload.js .\\dist",
+    "copy-dev-manifest": "copy .\\src\\manifest.dev.json .\\dist\\manifest.json",
+    "zip": "cross-zip .\\dist .\\.releases\\latest-release.zip"
   },
   "staticPath": {
-    "source": ["src/manifest.production.json", "src/_locales", "src/images", "src/help.html"],
-    "target": ["dist/manifest.json", "dist/_locales", "dist/images", "dist/help.html"]
+    "source": [
+      "src/_locales",
+      "src/images",
+      "src/help.html"
+    ],
+    "target": [
+      "dist/_locales",
+      "dist/images",
+      "dist/help.html"
+    ]
   },
   "jest": {
-    "roots": ["src"]
+    "roots": [
+      "src"
+    ]
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Maxime Le Breton",
+  "license": "GNU AGPL",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-jest": "^23.6.0",
     "babel-preset-env": "^1.7.0",
+    "copyfiles": "^2.1.0",
     "cross-env": "^5.2.0",
+    "cross-zip-cli": "^1.0.0",
     "fetch-mock": "^7.2.5",
     "jest": "^23.6.0",
-    "node-fetch": "^2.3.0"
-  },
-  "dependencies": {
-    "parcel-plugin-copy": "^1.0.2"
+    "node-fetch": "^2.3.0",
+    "parcel-plugin-copy": "^1.0.2",
+    "rimraf": "^2.6.3"
   }
 }

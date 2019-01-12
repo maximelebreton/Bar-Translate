@@ -1,5 +1,23 @@
 {
   "zh": {
-    "alias": "zh-CN"
+    "lang": "zh-CN"
+  },
+  "cn": {
+    "lang": "zh-CN"
+  },
+  "al": {
+    "lang": "sq"
+  },
+  "iw": {
+    "lang": "he"
+  },
+  "in": {
+    "lang": "id"
+  },
+  "ji": {
+    "lang": "yi"
+  },
+  "nb": {
+    "lang": "no"
   }
 }

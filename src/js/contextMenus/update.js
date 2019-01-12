@@ -7,7 +7,7 @@ const update = {
 
   translateSelection: (selectionText) => {
 
-    let targetLanguage = langUtils.getChromeLanguage()
+    let targetLanguage = langUtils.getBrowserLanguage()
     //actions.openTranslationInSite(null, targetLanguage, info.selectionText)
     translateService.getTranslation('', targetLanguage, selectionText)
     .then(data => {

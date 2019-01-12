@@ -1,0 +1,7 @@
+{
+  "name": "bar-translate",
+  "version": "0.0.0",
+  "scripts": {
+    "dev-watch": "parcel watch ../src/background.js --out-dir ../dist --no-hmr"
+  }
+}

@@ -1,0 +1,14 @@
+
+\.old/
+
+\.cache/
+
+dist/
+
+node_modules/
+
+\.releases/
+
+src/manifest\.firefox\.json
+
+package-lock\.json

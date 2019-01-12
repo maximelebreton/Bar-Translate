@@ -6,16 +6,20 @@ export default chrome.omnibox.onInputStarted.addListener(function() {
 
   storage.local.getValue(`${notifications.help.id}.${storage.states.hide}`)
     .then((hide) => {
+      console.info(hide, 'hide')
+      // if not always hidden, check for already hidden
       if (!hide) {
-        return storage.local.getValue(`${notifications.help.id}.${storage.states.alreadyNotified}`)
+        storage.local.getValue(`${notifications.help.id}.${storage.states.alreadyNotified}`)
+        .then((alreadyNotified) => {
+
+          if (!alreadyNotified) {
+            notifications.show('help')
+            storage.local.set(`${notifications.help.id}.${storage.states.alreadyNotified}`, true)
+          }
+        })
       }
     })
-    .then((alreadyNotified) => {
-      if (!alreadyNotified) {
-        notifications.show('help')
-        storage.local.set(`${notifications.help.id}.${storage.states.alreadyNotified}`, true)
-      }
-    })
+
 
 
   licensing.getStorageLicense()
@@ -24,7 +28,15 @@ export default chrome.omnibox.onInputStarted.addListener(function() {
       console.info(licensing.getLicenseMessage(license))
       if (!license || (license && license.accessLevel !== 'FULL')) {
 
-        notifications.show('tryLoveBuy')
+        //notifications.show('tryLoveBuy')
+        storage.local.getValue(`${notifications.tryLoveBuy.id}.${storage.states.alreadyNotified}`)
+        .then((alreadyNotified) => {
+
+          if (!alreadyNotified) {
+            notifications.show('tryLoveBuy')
+            storage.local.set(`${notifications.tryLoveBuy.id}.${storage.states.alreadyNotified}`, true)
+          }
+        })
 
         /*storage.local.getValue(`${notifications.tryLoveBuy.id}.alreadyNotified`)
           .then((alreadyNotified) => {

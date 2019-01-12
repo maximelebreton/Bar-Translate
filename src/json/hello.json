@@ -1,0 +1,369 @@
+[{
+  "locale": "af",
+  "country": "Afrikaans",
+  "string": "hallo"
+}, {
+  "locale": "ar",
+  "country": "Arabic",
+  "string": "مرحبا"
+}, {
+  "locale": "az",
+  "country": "Azerbaijani",
+  "string": "Salam"
+}, {
+  "locale": "be",
+  "country": "Belarusian",
+  "string": "добры дзень"
+}, {
+  "locale": "bg",
+  "country": "Bulgarian",
+  "string": "Здравейте"
+}, {
+  "locale": "bn",
+  "country": "Bengali",
+  "string": "হ্যালো"
+}, {
+  "locale": "bs",
+  "country": "Bosnian",
+  "string": "zdravo"
+}, {
+  "locale": "ca",
+  "country": "Catalan",
+  "string": "Hola"
+}, {
+  "locale": "ceb",
+  "country": "Cebuano",
+  "string": "hello"
+}, {
+  "locale": "cs",
+  "country": "Czech",
+  "string": "Ahoj"
+}, {
+  "locale": "cy",
+  "country": "Welsh",
+  "string": "Helo"
+}, {
+  "locale": "da",
+  "country": "Danish",
+  "string": "Hej"
+}, {
+  "locale": "de",
+  "country": "German",
+  "string": "Hallo"
+}, {
+  "locale": "el",
+  "country": "Greek",
+  "string": "γεια σας"
+}, {
+  "locale": "en",
+  "country": "English",
+  "string": "hello"
+}, {
+  "locale": "eo",
+  "country": "Esperanto",
+  "string": "hello"
+}, {
+  "locale": "es",
+  "country": "Spanish",
+  "string": "Hola"
+}, {
+  "locale": "et",
+  "country": "Estonian",
+  "string": "Tere"
+}, {
+  "locale": "eu",
+  "country": "Basque",
+  "string": "kaixo"
+}, {
+  "locale": "fa",
+  "country": "Persian",
+  "string": "سلام"
+}, {
+  "locale": "fi",
+  "country": "Finnish",
+  "string": "Hei"
+}, {
+  "locale": "fr",
+  "country": "French",
+  "string": "Bonjour"
+}, {
+  "locale": "ga",
+  "country": "Irish",
+  "string": "Dia dhuit"
+}, {
+  "locale": "gl",
+  "country": "Galician",
+  "string": "Ola"
+}, {
+  "locale": "gu",
+  "country": "Gujarati",
+  "string": "હેલ્લો"
+}, {
+  "locale": "ha",
+  "country": "Hausa",
+  "string": "sannu"
+}, {
+  "locale": "hi",
+  "country": "Hindi",
+  "string": "नमस्ते"
+}, {
+  "locale": "hmn",
+  "country": "Hmong",
+  "string": "hello"
+}, {
+  "locale": "hr",
+  "country": "Croatian",
+  "string": "zdravo"
+}, {
+  "locale": "ht",
+  "country": "Haitian Creole",
+  "string": "hello"
+}, {
+  "locale": "hu",
+  "country": "Hungarian",
+  "string": "Szia"
+}, {
+  "locale": "hy",
+  "country": "Armenian",
+  "string": "Բարեւ"
+}, {
+  "locale": "id",
+  "country": "Indonesian",
+  "string": "Halo"
+}, {
+  "locale": "ig",
+  "country": "Igbo",
+  "string": "Nnọọ"
+}, {
+  "locale": "is",
+  "country": "Icelandic",
+  "string": "Halló"
+}, {
+  "locale": "it",
+  "country": "Italian",
+  "string": "Ciao"
+}, {
+  "locale": "iw",
+  "country": "Hebrew",
+  "string": "שלום"
+}, {
+  "locale": "ja",
+  "country": "Japanese",
+  "string": "こんにちは"
+}, {
+  "locale": "jw",
+  "country": "Javanese",
+  "string": "Dhewe"
+}, {
+  "locale": "ka",
+  "country": "Georgian",
+  "string": "გამარჯობა"
+}, {
+  "locale": "kk",
+  "country": "Kazakh",
+  "string": "Сәлеметсіз бе"
+}, {
+  "locale": "km",
+  "country": "Khmer",
+  "string": "សួស្តី"
+}, {
+  "locale": "kn",
+  "country": "Kannada",
+  "string": "ಹಲೋ"
+}, {
+  "locale": "ko",
+  "country": "Korean",
+  "string": "여보세요"
+}, {
+  "locale": "la",
+  "country": "Latin",
+  "string": "hello"
+}, {
+  "locale": "lo",
+  "country": "Lao",
+  "string": "ສະບາຍດີ"
+}, {
+  "locale": "lt",
+  "country": "Lithuanian",
+  "string": "Sveiki"
+}, {
+  "locale": "lv",
+  "country": "Latvian",
+  "string": "Sveiki"
+}, {
+  "locale": "mg",
+  "country": "Malagasy",
+  "string": "Salama"
+}, {
+  "locale": "mi",
+  "country": "Maori",
+  "string": "koa"
+}, {
+  "locale": "mk",
+  "country": "Macedonian",
+  "string": "Здраво"
+}, {
+  "locale": "ml",
+  "country": "Malayalam",
+  "string": "ഹലോ"
+}, {
+  "locale": "mn",
+  "country": "Mongolian",
+  "string": "Сайн уу"
+}, {
+  "locale": "mr",
+  "country": "Marathi",
+  "string": "नमस्कार"
+}, {
+  "locale": "ms",
+  "country": "Malay",
+  "string": "hello"
+}, {
+  "locale": "mt",
+  "country": "Maltese",
+  "string": "Bongu"
+}, {
+  "locale": "my",
+  "country": "Myanmar (Burmese)",
+  "string": "ဟယ်လို"
+}, {
+  "locale": "ne",
+  "country": "Nepali",
+  "string": "नमस्ते"
+}, {
+  "locale": "nl",
+  "country": "Dutch",
+  "string": "Hallo"
+}, {
+  "locale": "no",
+  "country": "Norwegian",
+  "string": "Hallo"
+}, {
+  "locale": "ny",
+  "country": "Chichewa",
+  "string": "Moni"
+}, {
+  "locale": "pa",
+  "country": "Punjabi",
+  "string": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
+}, {
+  "locale": "pl",
+  "country": "Polish",
+  "string": "dzień dobry"
+}, {
+  "locale": "pt",
+  "country": "Portuguese",
+  "string": "Olá"
+}, {
+  "locale": "ro",
+  "country": "Romanian",
+  "string": "Salut"
+}, {
+  "locale": "ru",
+  "country": "Russian",
+  "string": "Привет"
+}, {
+  "locale": "si",
+  "country": "Sinhala",
+  "string": "හෙලෝ"
+}, {
+  "locale": "sk",
+  "country": "Slovak",
+  "string": "Ahoj"
+}, {
+  "locale": "sl",
+  "country": "Slovenian",
+  "string": "zdravo"
+}, {
+  "locale": "so",
+  "country": "Somali",
+  "string": "hello"
+}, {
+  "locale": "sq",
+  "country": "Albanian",
+  "string": "Përshëndetje"
+}, {
+  "locale": "sr",
+  "country": "Serbian",
+  "string": "Здраво"
+}, {
+  "locale": "st",
+  "country": "Sesotho",
+  "string": "Lumela"
+}, {
+  "locale": "su",
+  "country": "Sundanese",
+  "string": "Halo"
+}, {
+  "locale": "sv",
+  "country": "Swedish",
+  "string": "Hej"
+}, {
+  "locale": "sw",
+  "country": "Swahili",
+  "string": "hello"
+}, {
+  "locale": "ta",
+  "country": "Tamil",
+  "string": "வணக்கம்"
+}, {
+  "locale": "te",
+  "country": "Telugu",
+  "string": "హలో"
+}, {
+  "locale": "tg",
+  "country": "Tajik",
+  "string": "Салом"
+}, {
+  "locale": "th",
+  "country": "Thai",
+  "string": "สวัสดี"
+}, {
+  "locale": "tl",
+  "country": "Filipino",
+  "string": "Kamusta"
+}, {
+  "locale": "tr",
+  "country": "Turkish",
+  "string": "Merhaba"
+}, {
+  "locale": "uk",
+  "country": "Ukrainian",
+  "string": "Здрастуйте"
+}, {
+  "locale": "ur",
+  "country": "Urdu",
+  "string": "ہیلو"
+}, {
+  "locale": "uz",
+  "country": "Uzbek",
+  "string": "Salom"
+}, {
+  "locale": "vi",
+  "country": "Vietnamese",
+  "string": "xin chào"
+}, {
+  "locale": "yi",
+  "country": "Yiddish",
+  "string": "hello"
+}, {
+  "locale": "yo",
+  "country": "Yoruba",
+  "string": "Pẹlẹ o"
+}, {
+  "locale": "zh",
+  "country": "Chinese",
+  "string": "你好"
+}, {
+  "locale": "zh-CN",
+  "country": "Chinese (Simplified)",
+  "string": "你好"
+}, {
+  "locale": "zh-TW",
+  "country": "Chinese (Traditional)",
+  "string": "你好"
+}, {
+  "locale": "zu",
+  "country": "Zulu",
+  "string": "Sawubona"
+}]
