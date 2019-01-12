@@ -3,14 +3,17 @@
   "version": "1.1.0",
   "description": "",
   "scripts": {
-    "watch": "npm run clean-dist && npm run copy-hr && npm run copy-dev-manifest && cd .dev && npm run dev-watch",
-    "build": "npm run clean-dist && npm run copy-manifest && parcel build src/background.js --out-dir dist --no-source-maps && npm run zip",
+    "watch": "npm run pre-watch && parcel watch src/background.js --out-dir dist --no-hmr",
+    "build": "npm run pre-build && parcel build src/background.js --out-dir dist --no-source-maps && npm run post-build",
     "test": "jest --watchAll",
+    "pre-watch": "npm run clean-dist && npm run copy-dev-manifest && npm run copy-hot-reload",
+    "pre-build": "npm run clean-dist && npm run copy-prod-manifest",
+    "post-build": "npm run zip-build",
     "clean-dist": "rimraf .\\dist\\**\\*",
-    "copy-manifest": "copy .\\src\\manifest.production.json .\\dist\\manifest.json",
-    "copy-hr": "copy .\\src\\hot-reload.js .\\dist",
+    "copy-prod-manifest": "copy .\\src\\manifest.production.json .\\dist\\manifest.json",
     "copy-dev-manifest": "copy .\\src\\manifest.dev.json .\\dist\\manifest.json",
-    "zip": "cross-zip .\\dist .\\.releases\\latest-release.zip"
+    "copy-hot-reload": "copy .\\src\\hot-reload.js .\\dist",
+    "zip-build": "cross-zip .\\dist .\\.releases\\latest-release.zip"
   },
   "staticPath": {
     "source": [
