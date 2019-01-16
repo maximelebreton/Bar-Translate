@@ -3,20 +3,23 @@ import langUtils from '../utils/lang.js'
 
 
 
-describe('Test supported lanuages translations', () => {
+describe('Supported languages translations', () => {
 
-  it("Returns language traduction for each supported language", function () {
-
+  it("Returns hello traduction for each supported language", function () {
+    let missingLanguages = []
     chromeLanguages.forEach((lang) => {
 
         let hello = langUtils.getHelloFromLangOrAlias(lang)
+        expect(hello).toBeDefined()
         if (hello) {
-          expect(hello).toBeDefined()
+
         } else {
-            console.warn(`${hello} for ${lang}`)
+          missingLanguages.push(lang)
+
         }
 
     })
+    console.warn(`missing hello for ${missingLanguages}`)
 
   })
 

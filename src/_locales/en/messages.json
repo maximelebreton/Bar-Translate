@@ -17,6 +17,9 @@
     "default": {
       "message": "default"
     },
+    "default__smallcase": {
+      "message": "ᴅᴇғᴀᴜʟᴛ"
+    },
     "try": {
       "message": "try"
     },
@@ -34,6 +37,9 @@
     },
     "syncLicense": {
       "message": "Link existing license"
+    },
+    "registerLicense": {
+      "message": "Register your license"
     },
     "dontShowAnymore": {
       "message": "Don't show anymore"

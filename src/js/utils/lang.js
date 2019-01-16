@@ -89,6 +89,13 @@ const langUtils = {
     }
   },
 
+
+  isDefaultLang(value) {
+    let isDefault = langUtils.getBrowserLanguage() === value ? true : false
+    return isDefault
+  },
+
+
   extractLanguageFromQuery(text) {
     let firstWord = textUtils.getFirstWordAfterSpace(text)
     let {sourceValue, targetValue} = langUtils.getLanguagePair( firstWord )
@@ -99,10 +106,11 @@ const langUtils = {
     let ifTargetLanguageExists = targetValue ? supportedTargetLang : null
     let ifSourceLanguageExists = sourceValue ? supportedSourceLang : null
 
-    let isDefault = ifTargetLanguageExists ? false : true
-    let query = ifTargetLanguageExists ? textUtils.getWithoutFirstWordAfterSpace(text) : text
+    let query = ifTargetLanguageExists || ifSourceLanguageExists ? textUtils.getWithoutFirstWordAfterSpace(text) : text
     let targetLanguage = ifTargetLanguageExists ? supportedTargetLang : langUtils.getBrowserLanguage()
-    let sourceLanguage = ifSourceLanguageExists ? supportedSourceLang : ''
+    let sourceLanguage = ifSourceLanguageExists ? supportedSourceLang : null
+
+    let isDefault = ifTargetLanguageExists ? false : langUtils.isDefaultLang(targetLanguage)
 
     return {
       isDefault,

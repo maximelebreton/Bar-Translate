@@ -1,6 +1,6 @@
 import notifications from './index'
 import actions from '../actions'
-import licensing from '../licensing'
+//import licensing from '../licensing'
 import storage from '../storage'
 import textUtils from '../utils/text'
 
@@ -10,10 +10,11 @@ export default chrome.notifications.onButtonClicked.addListener((notificationId,
 
       if (buttonIndex === 0) {
         chrome.notifications.clear(notifications.tryLoveBuy.id)
-        actions.openChromeWebstorePage()
+        actions.openBuyPage()
       }
       if (buttonIndex === 1) {
-        licensing.registerLicense()
+        //licensing.registerLicense()
+        actions.openRegisterPage()
         chrome.notifications.clear(notifications.tryLoveBuy.id)
       }
 

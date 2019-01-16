@@ -1,12 +1,12 @@
-import notifications from './notifications'
+//import notifications from './notifications'
 import storage from './storage'
 
-var CWS_API_URL = 'https://www.googleapis.com/chromewebstore/v1.1/';
+//var CWS_API_URL = 'https://www.googleapis.com/chromewebstore/v1.1/';
 
 
 const licensing = {
 
-  getAuthToken: () => {
+  /*getAuthToken: () => {
     return new Promise((resolve, reject) => {
 
       chrome.identity.getAuthToken({interactive: false}, function (token) {
@@ -43,16 +43,16 @@ const licensing = {
       return data
     })
 
-  },
+  },*/
 
 
   getLicenseMessage: (license) => {
-    let licenseSuccessMessage = `Your Bar Translate license has been registered!`
-    let licenseRejectMessage = `Sorry, but you don't have a Bar Translate license associated to this account`
-    if (license && license.result === true && license.accessLevel === 'FULL') {
-      return licenseSuccessMessage
-    } else {
+    let licenseSuccessMessage = `Your Bar Translate license is registered!`
+    let licenseRejectMessage = `Sorry, but there is no Bar Translate license associated with this account`
+    if (!license || (license && license.accessLevel === 'FREE_TRIAL')) {
       return licenseRejectMessage
+    } else {
+      return licenseSuccessMessage
     }
   },
 
@@ -61,7 +61,11 @@ const licensing = {
       return storage.sync.getValue('barTranslate.license')
   },
 
+  storeLicense: (licenseData) => {
+   return storage.sync.set('barTranslate.license', licenseData)
+  }
 
+/*
   registerLicense: () => {
     return licensing.getAuthToken()
       .then(token => {
@@ -81,7 +85,7 @@ const licensing = {
         console.info(license)
         return license
       })
-  }
+  }*/
 }
 
 

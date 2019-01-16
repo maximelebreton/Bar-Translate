@@ -19,6 +19,7 @@ const messages = {
 
     let toPrefix = sourceLanguage && !isDetectedSourceLanguage ? `${chrome.i18n.getMessage('into')} ` : `${chrome.i18n.getMessage('in')} `
     let toSuffix = `<dim>${isDefault ? ` (${chrome.i18n.getMessage('default')})` : ''}</dim>`
+
     let to = `<match>${toPrefix}<url>${targetLanguageName}</url></match>${toSuffix}`
 
     return `${translate}${match}${from}${to}`
@@ -33,7 +34,7 @@ const messages = {
   },*/
 
   getSuggestDescription(languageName, languageSlice, langName, langSlice, aliasName, aliasSlice) {
-  return `<match><dim>?</dim></match>${space.repeat(2)}Translate in <url><match>${languageName.slice(0, languageSlice.length)}</match>${languageName.slice(languageSlice.length, languageName.length)}</url> <dim>(<match>${!aliasSlice ? langName.slice(0, langSlice.length) : ''}</match>${!aliasSlice ? langName.slice(langSlice.length, langName.length) : ''}<match>${aliasSlice ? aliasName.slice(0, aliasSlice.length) : ''}</match>${aliasSlice ? aliasName.slice(aliasSlice.length, aliasName.length) : ''})</dim>`
+    return `<match><dim>?</dim></match>${space.repeat(2)}Translate in <url><match>${languageName.slice(0, languageSlice.length)}</match>${languageName.slice(languageSlice.length, languageName.length)}</url> <dim>(<match>${!aliasSlice ? langName.slice(0, langSlice.length) : ''}</match>${!aliasSlice ? langName.slice(langSlice.length, langName.length) : ''}<match>${aliasSlice ? aliasName.slice(0, aliasSlice.length) : ''}</match>${aliasSlice ? aliasName.slice(aliasSlice.length, aliasName.length) : ''})</dim>`
   },
 
   /*getFromLanguageSuggestDescription(languageName, languageSlice, langName, langSlice) {
@@ -65,7 +66,7 @@ const messages = {
     //let arrow = `—›`
     //let prefix = `<dim>${sourceLanguage ? `${sourceLanguage}` : ''}</dim><match></match><dim> › ${targetLanguage}</dim>`
     let space = `  `
-    return `${space}<match><dim>=</dim></match>${space}<url><match>${translatedText}</match></url> <dim>${space}ᴛʀᴀɴsʟᴀᴛᴇᴅ ʙʏ ${translateService.smallcase}</dim>`
+    return `${space}<match><dim>=</dim></match>${space}<url><match>${translatedText}</match></url><dim>${space.repeat(2)}${chrome.i18n.getMessage('translatedBy__smallcase')} ${translateService.smallcase}</dim>`
   },
 
   getErrorDescription(sourceLanguage, targetLanguage, query, translateService) {

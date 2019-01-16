@@ -31,7 +31,7 @@ const messages = {
           title: getMessage('buyNow')
         },
         sync: {
-          title: getMessage('syncLicense')
+          title: getMessage('registerLicense')
         }
       }
     },
@@ -56,7 +56,7 @@ const messages = {
       title: getMessage('buyLicense')
     },
     license: {
-      title: getMessage('syncLicense')
+      title: getMessage('registerLicense')
     }
 
   },

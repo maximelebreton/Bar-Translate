@@ -26,7 +26,7 @@ export default chrome.omnibox.onInputStarted.addListener(function() {
     .then(license => {
       console.info(license, 'license')
       console.info(licensing.getLicenseMessage(license))
-      if (!license || (license && license.accessLevel !== 'FULL')) {
+      if (!license || (license && license.accessLevel === 'FREE_TRIAL')) {
 
         //notifications.show('tryLoveBuy')
         storage.local.getValue(`${notifications.tryLoveBuy.id}.${storage.states.alreadyNotified}`)

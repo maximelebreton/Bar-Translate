@@ -1,11 +1,11 @@
 {
   "name": "bar-translate",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
   "scripts": {
-    "watch": "npm run pre-watch && parcel watch src/background.js --out-dir dist --no-hmr",
-    "build": "npm run pre-build && parcel build src/background.js --out-dir dist --no-source-maps && npm run post-build",
-    "test": "jest --watchAll",
+    "watch": "npm run pre-watch && parcel watch src/background.js src/register.html --out-dir dist --no-hmr",
+    "build": "npm run pre-build && parcel build src/background.js src/register.html --out-dir dist --no-source-maps && npm run post-build",
+    "test": "jest --verbose --silent --watchAll",
     "pre-watch": "npm run clean-dist && npm run copy-dev-manifest && npm run copy-hot-reload",
     "pre-build": "npm run clean-dist && npm run copy-prod-manifest",
     "post-build": "npm run zip-build",
@@ -30,6 +30,9 @@
   "jest": {
     "roots": [
       "src"
+    ],
+    "setupFiles": [
+      "jest-webextension-mock"
     ]
   },
   "author": "Maxime Le Breton",
@@ -41,8 +44,10 @@
     "copyfiles": "^2.1.0",
     "cross-env": "^5.2.0",
     "cross-zip-cli": "^1.0.0",
+    "cssnano": "^4.1.8",
     "fetch-mock": "^7.2.5",
     "jest": "^23.6.0",
+    "jest-webextension-mock": "^3.5.0",
     "node-fetch": "^2.3.0",
     "parcel-plugin-copy": "^1.0.2",
     "rimraf": "^2.6.3"

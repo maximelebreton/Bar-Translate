@@ -1,6 +1,6 @@
 import contextMenus from './index'
 import actions from '../actions'
-import licensing from '../licensing'
+//import licensing from '../licensing'
 import langUtils from '../utils/lang'
 import notifications from '../notifications'
 import translateService from '../translateService'
@@ -32,10 +32,12 @@ export default chrome.contextMenus.onClicked.addListener(function (info, tab) {
     actions.openHelpPage()
   }
   if (info.menuItemId === contextMenus.buyLicense) {
-    actions.openChromeWebstorePage()
+    //actions.openChromeWebstorePage()
+    actions.openBuyPage()
   }
   if (info.menuItemId === contextMenus.registerLicense) {
-    licensing.registerLicense()
+    //licensing.registerLicense()
+    actions.openRegisterPage()
   }
 
 });

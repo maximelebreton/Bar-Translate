@@ -47,6 +47,18 @@ describe('Check Services', () => {
   Object.keys(translateService.list).forEach(function (id) {
     let currentTranslateService = translateService.list[id]
 
+    let urlWithoutSource = currentTranslateService.getUrl(null, targetLanguage, query)
+    it(urlWithoutSource, () => {
+      if (id === 'googleTranslate') {
+        expect(urlWithoutSource).toMatch('auto')
+      } else {
+        expect(urlWithoutSource).toMatch('')
+      }
+      expect(urlWithoutSource).toMatch(targetLanguage)
+      expect(urlWithoutSource).toMatch(query)
+    })
+
+
     let url = currentTranslateService.getUrl(sourceLanguage, targetLanguage, query)
     it(url, () => {
       expect(url).toMatch(sourceLanguage)

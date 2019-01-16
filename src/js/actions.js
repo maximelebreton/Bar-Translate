@@ -10,9 +10,21 @@ const actions = {
     })
   },
 
+  openRegisterPage: () => {
+    chrome.tabs.create({
+      url: chrome.runtime.getURL("register.html")
+    })
+  },
+
   openHelpPage: () => {
     chrome.tabs.create({
       url: chrome.runtime.getURL("help.html")
+    })
+  },
+
+  openBuyPage: () => {
+    chrome.tabs.create({
+      url: 'https://license.maximelebreton.com/bar-translate/buy'
     })
   },
 

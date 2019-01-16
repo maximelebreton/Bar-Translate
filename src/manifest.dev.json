@@ -12,8 +12,7 @@
   "permissions": [
     "contextMenus",
     "notifications",
-    "storage",
-    "identity"
+    "storage"
   ],
   "icons": {
     "16": "images/icon.png",
@@ -27,11 +26,5 @@
     "256": "images/thumb-256.png"
   },
   "omnibox": { "keyword" : "t" },
-  "manifest_version": 2,
-  "oauth2": {
-    "client_id": "903080872661-s5vjgea26a2p1hh5qt44n0asu97hf2gt.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/chromewebstore.readonly"
-    ]
-  }
+  "manifest_version": 2
 }

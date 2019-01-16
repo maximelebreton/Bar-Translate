@@ -9,7 +9,7 @@ const googleScriptService = () => {
     getUrl: (sourceLanguage, targetLanguage, query) => {
       const path = 'https://script.google.com/macros/s/AKfycbyCMrxkscWQ_fqmz_G0jBp44qzSitIu37RcsUVznA4M-zSP2tI/exec'
       const params = {
-        'sl': sourceLanguage,
+        'sl': sourceLanguage ? sourceLanguage : '',
         'tl': targetLanguage,
         'q': encodeURI(query)
       }
@@ -17,7 +17,8 @@ const googleScriptService = () => {
     },
 
     getSiteUrl: (sourceLanguage, targetLanguage, query) => {
-      return `https://translate.google.com/#view=home&op=translate&sl=${sourceLanguage}&tl=${targetLanguage}&text=${encodeURI(query)}`
+      console.log(sourceLanguage)
+      return `https://translate.google.com/#view=home&op=translate&sl=${sourceLanguage ? sourceLanguage : ''}&tl=${targetLanguage}&text=${encodeURI(query)}`
     },
 
     getNormalizedData: (data) => {

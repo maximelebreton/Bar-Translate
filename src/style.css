@@ -1,0 +1,17 @@
+.input {
+  padding: 1em;
+  text-align: center;
+  max-width: 100%;
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+  padding: 1em 2em;
+  color: #fff;
+  background-color: #0074d4;
+  border: 0;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -11,6 +11,7 @@ let abortOnChangeDebounce = false
 
 const getTranslationsSuggests = (sourceLanguage, targetLanguage, query, translations, translateService) => {
   return translations.map(function (translation) {
+    // because suggest doesn't display if content attr already exist in suggests, and somestimes the input query match the translated result
     let content = translation.translatedText === query ? `${translation.translatedText}${textUtils.zeroWidthSpace}` : translation.translatedText
 
     return {
@@ -193,7 +194,6 @@ let debounceOnChange = debounce(onChange, 300)
 
 
 const onInputChangedListener = (text, suggest) => {
-
   let {sourceLanguage, targetLanguage, query, isDefault} = langUtils.extractLanguageFromQuery(text)
   messages.defaultDescription = messages.getDefaultDescription(sourceLanguage, targetLanguage, query, isDefault)
 

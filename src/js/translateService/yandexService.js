@@ -7,7 +7,7 @@ const yandexService = () => {
     smallcase: 'ʏᴀɴᴅᴇx',
 
     getUrl: (sourceLanguage, targetLanguage, query) => {
-      sourceLanguage = sourceLanguage.split('-')[0]
+      sourceLanguage = sourceLanguage ? sourceLanguage.split('-')[0] : null
       targetLanguage = targetLanguage.split('-')[0]
 
       const path = 'https://translate.yandex.net/api/v1.5/tr.json/translate'
@@ -20,7 +20,7 @@ const yandexService = () => {
     },
 
     getSiteUrl: (sourceLanguage, targetLanguage, query) => {
-      sourceLanguage = sourceLanguage.split('-')[0]
+      sourceLanguage = sourceLanguage ? sourceLanguage.split('-')[0] : null
       targetLanguage = targetLanguage.split('-')[0]
       return `https://translate.yandex.com/?lang=${sourceLanguage ? sourceLanguage + '-' : ''}${targetLanguage}&text=${encodeURI(query)}`
     },
