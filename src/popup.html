@@ -1,0 +1,233 @@
+<html><head>
+  <title>Bar Translate</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html{
+      background-color: #fff;
+    }
+    body {
+      /*text-align: center;*/
+      background-color: #fff;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      /*padding-top: 1rem;*/
+    }
+
+    .siema, .siema video {
+      /*margin-left: -1rem;
+      margin-right: -1rem;*/
+    }
+    .siema > div {
+      /*padding-left: 1rem;
+      padding-right: 1rem;*/
+      max-height: 280px;
+    }
+
+
+    .tabs {
+      padding-left: 2rem;
+    }
+    .inherit {
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      margin: 0;
+      padding: 0;
+      width: auto;
+      overflow: visible;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      line-height: normal;
+    }
+    .tabs li {
+      font-size: 1rem;
+      margin-bottom: .5rem;
+    }
+    .tabs button:hover {
+      color: #3271E2;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .siema {
+          overflow: hidden;
+    direction: ltr;
+    cursor: -webkit-grab;
+      max-width: 436px;
+      max-height: 280px;
+    }
+    .siema video {
+      min-width: 100%;
+    }
+    .container {
+      padding: 1rem;
+      min-height: 280px;
+    }
+    .siema > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    .siema > div > div {
+      float: none !important;
+    }
+    .siema img {
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .tour-buttons {
+      display: flex;
+      flex-direction: row;
+      padding: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      flex-grow: 1;
+    }
+    .prev, .next, .end {
+      padding: .5rem 1rem;
+      border-radius: 3px;
+    }
+    .prev:hover, .next:hover, .end:hover {
+      cursor: pointer;
+      background-color: #fafafa;
+    }
+
+    .content {
+      padding: 1rem;
+      text-align: center;
+      font-style: italic;
+      background-color: #fafafa;
+      flex-grow: 1;
+    }
+    [disabled=true] {
+      opacity: .5;
+    }
+    .title {
+      text-align: center;
+      font-weight: bold;
+      /*padding: 1rem;*/
+
+    }
+    .next, .next:hover {
+      background-color: rgba(50, 113, 226, 1);
+      color: #fff;
+    }
+    .end, .end:hover {
+      background-color: rgba(32, 33, 36, 1);
+      color: #fff;
+    }
+
+    .buy, .register {
+      display: inline-block;
+      color: #FFFFFF;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-decoration: none;
+
+      padding: .5rem 1rem;
+
+      border: none;
+      /*font-weight: 600;*/
+      border-radius: 3px;
+
+      text-align: center;
+      cursor: pointer;
+
+
+      z-index: 2;
+    }
+    .buy {
+      right: 2rem;
+      background-color: #FBBC04;
+      box-shadow: 0 10px 20px 0 rgba(251, 188, 4, 0.2);
+    }
+    .register {
+      left: 2rem;
+      /*background-color: rgba(32, 33, 36, .5);*/
+      background-color: #fff;
+      /*color: rgba(32, 33, 36, 1);*/
+      color: inherit;
+      /*rgba(32, 33, 36, 0.2);*/
+      /*rgba(50, 113, 226, 0.2);*/
+      border: 1px solid rgba(32, 33, 36, 0.2);
+    }
+    a {
+      color: rgba(50, 113, 226, 1);
+    }
+
+  </style>
+  <!--
+    - JavaScript and HTML must be in separate files: see our Content Security
+    - Policy documentation[1] for details and explanation.
+    -
+    - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+   -->
+</head>
+<body>
+
+
+
+    <div id="content" class="content"></div>
+
+  <div class="siema">
+      <div class="container">
+           <img style="position: relative; z-index: 3; display:block; width: 2rem; height: 2rem; margin: auto;" src="images/icon@6x.png" alt="">
+          <h2 style="margin-left: 1rem">Understand Bar Translate in 45 seconds: </h2>
+          <ol class="tabs">
+            <li><button videoId="one" class="inherit video-trigger"></button></li>
+            <li><button videoId="two" class="inherit video-trigger"></button></li>
+            <li><button videoId="three" class="inherit video-trigger"></button></li>
+            <li><button videoId="four" class="inherit video-trigger"></button></li>
+          </ol>
+
+           <p style="margin-left: 1rem; padding-top:.5rem;"><a href="help.html" target="_blank">More help and tips</a></p>
+      </div>
+      <div>
+        <video id="one" data-title="How to open it?" data-content="Type 't' in your address bar (omnibox) and press tab (or space)" loop muted playsinline>
+          <source data-src="https://github.com/maximelebreton/Bar-Translate/raw/images/active.mp4" type="video/mp4">
+          <source data-src="https://github.com/maximelebreton/Bar-Translate/raw/images/active.webm" type="video/webm">
+        </video>
+      </div>
+      <div>
+        <video id="two" data-title="Prefix your query, or not" data-content="Browser language is the default, but you can specify a target language" loop muted playsinline>
+          <source data-src="https://github.com/maximelebreton/Bar-Translate/raw/images/basic.mp4" type="video/mp4">
+          <source data-src="https://github.com/maximelebreton/Bar-Translate/raw/images/basic.webm" type="video/webm">
+          </video>
+      </div>
+      <div>
+        <video id="three" data-title="Find a prefix and specify a target language" data-content="Find a prefix by typing the english name of your requested language" loop muted playsinline>
+            <source data-src="https://github.com/maximelebreton/Bar-Translate/raw/images/find.mp4" type="video/mp4">
+          <source data-src="https://github.com/maximelebreton/Bar-Translate/raw/images/find.webm" type="video/webm">
+        </video>
+      </div>
+      <div>
+        <video id="four" data-title="Specify source and target languages" data-content="Specify source and target languages with the '>' operator" loop muted playsinline>
+          <source data-src="https://github.com/maximelebreton/Bar-Translate/raw/images/gift.mp4" type="video/mp4">
+          <source data-src="https://github.com/maximelebreton/Bar-Translate/raw/images/gift.webm" type="video/webm">
+          </video>
+      </div>
+    </div>
+
+    <div class="tour-buttons">
+        <button class="prev inherit">Prev</button><button class="register" style="display: none;">Register a license</button>
+        <div id="title" class="title"></div>
+        <button class="next inherit">Next</button><button style="display:none;" class="end inherit">End</button><button class="buy" style="display: none;">Buy a license</button>
+      </div>
+
+
+
+  <!-- <div class="">
+      <div><img src="images/active.gif" alt=""></div>
+      <div><img src="images/hello.gif" alt=""></div>
+      <div><img src="images/bonjour.gif" alt=""></div>
+      <div><img src="images/gift.gif" alt=""></div>
+    </div> -->
+    <script src="popup.js"></script>
+
+</body></html>

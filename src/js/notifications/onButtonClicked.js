@@ -19,7 +19,7 @@ export default chrome.notifications.onButtonClicked.addListener((notificationId,
       }
 
     }
-    if (notificationId === notifications.help.id) {
+    /*if (notificationId === notifications.help.id) {
       if (buttonIndex === 0) {
         chrome.notifications.clear(notifications.help.id)
 
@@ -31,7 +31,9 @@ export default chrome.notifications.onButtonClicked.addListener((notificationId,
       if (buttonIndex === 1) {
         actions.openHelpPage()
       }
-    }
+    }*/
+
+
     if (notificationId === notifications.translation.id) {
 
       /*if (buttonIndex === 0) {

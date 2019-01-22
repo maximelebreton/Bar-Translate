@@ -18,7 +18,7 @@ const googleScriptService = () => {
 
     getSiteUrl: (sourceLanguage, targetLanguage, query) => {
       console.log(sourceLanguage)
-      return `https://translate.google.com/#view=home&op=translate&sl=${sourceLanguage ? sourceLanguage : ''}&tl=${targetLanguage}&text=${encodeURI(query)}`
+      return `https://translate.google.com/#view=home&op=translate&sl=${sourceLanguage ? sourceLanguage : 'auto'}&tl=${targetLanguage}&text=${encodeURI(query)}`
     },
 
     getNormalizedData: (data) => {

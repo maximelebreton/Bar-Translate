@@ -4,7 +4,7 @@ import licensing from '../licensing'
 
 export default chrome.omnibox.onInputStarted.addListener(function() {
 
-  storage.local.getValue(`${notifications.help.id}.${storage.states.hide}`)
+  /*storage.local.getValue(`${notifications.help.id}.${storage.states.hide}`)
     .then((hide) => {
       console.info(hide, 'hide')
       // if not always hidden, check for already hidden
@@ -19,7 +19,7 @@ export default chrome.omnibox.onInputStarted.addListener(function() {
         })
       }
     })
-
+  */
 
 
   licensing.getStorageLicense()

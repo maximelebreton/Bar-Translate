@@ -40,7 +40,7 @@ const create = {
       "id": prefix + "buyLicense",
       "title": messages.contextMenus.buy.title,
       "type": "normal",
-      "contexts": ["page_action"]
+      "contexts": ["browser_action"]
     })
   },
 
@@ -49,7 +49,7 @@ const create = {
       "id": prefix + "registerLicense",
       "title": messages.contextMenus.license.title,
       "type": "normal",
-      "contexts": ["page_action"]
+      "contexts": ["browser_action"]
     })
   }
 

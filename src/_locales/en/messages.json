@@ -1,4 +1,13 @@
 {
+    "translateFrom": {
+      "message": "Translate from"
+    },
+    "translateIn": {
+      "message": "Translate in"
+    },
+    "translateInto": {
+      "message": "Translate into"
+    },
     "translate": {
       "message": "translate"
     },
@@ -48,7 +57,7 @@
       "message": "Show help & tips"
     },
     "helpAndTips": {
-      "message": "Help & tips"
+      "message": "Help and tips"
     },
     "goHelp": {
       "message": "Open help & tips"
@@ -111,5 +120,14 @@
     },
     "copyToClipboard": {
       "message": "Copy to clipboard"
+    },
+    "selectWithArrowKeys": {
+      "message": "you can use the 🠙🠛 keyboard arrows"
+    },
+    "weirdResult": {
+      "message": "Weird result"
+    },
+    "retrying": {
+      "message": "Retrying"
     }
 }

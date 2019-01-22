@@ -10,7 +10,7 @@ import helloInAllLanguages from '../../json/helloInAllLanguages.json'
 
 const create = {
 
-  help: () => {
+  /*help: () => {
 
     let browserLang = langUtils.getBrowserLanguage()
     let langHello = langUtils.getHelloFromLangOrAlias( browserLang )
@@ -44,7 +44,7 @@ const create = {
         }]
       })
     })
-  },
+  },*/
 
   tryLoveBuy: () => {
     chrome.notifications.clear(notifications.tryLoveBuy.id, () => {

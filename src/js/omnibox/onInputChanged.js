@@ -152,7 +152,7 @@ const getLanguagesSuggests = (value) => {
 }
 
 
-const onChange = (sourceLanguage, targetLanguage, query, isDefault, suggest) => {
+const onChange = (sourceLanguage, targetLanguage, query, isDefault, suggest, suggestedLanguages) => {
   if (!query.length || abortOnChangeDebounce) {
     return
   }
@@ -165,12 +165,38 @@ const onChange = (sourceLanguage, targetLanguage, query, isDefault, suggest) => 
     let translationsSuggests = getTranslationsSuggests(resolvedSourceLanguage, targetLanguage, query, translations, translateService.current)
     messages.defaultDescription = messages.getDefaultDescription(resolvedSourceLanguage, targetLanguage, query, isDefault, isDetectedSourceLanguage)
 
-    chrome.omnibox.setDefaultSuggestion({
-      description: messages.defaultDescription
-    })
-    if (translationsSuggests.length && translationsSuggests[0].content.length) {
-      suggest(translationsSuggests)
+    let suggestedTranslation = textUtils.removeZeroWidthSpaces( translationsSuggests[0].content )
+
+
+    if (suggestedTranslation === query && suggestedLanguages.length) { // ouput is same as input, and there is language suggests
+      chrome.omnibox.setDefaultSuggestion({
+        description: messages.getLanguageSuggestDefaultDescription()
+      })
+    } else if (suggestedTranslation === query && !suggestedLanguages.length) {  // ouput is same as input, and no language suggests, so it's weird... maybe a non existing word
+      chrome.omnibox.setDefaultSuggestion({
+        description: messages.defaultDescription
+      })
+      let warnedTranslationSuggest = translationsSuggests.map((result) => {
+        return {
+          content: result.content,
+          description: messages.getWeirdResultMessage() + result.description
+        }
+      })
+      suggest(warnedTranslationSuggest)
+    } else if (query.match(/[>]/) && !query.match(/[\s]/)) { // find a > symbol but no spaces
+      chrome.omnibox.setDefaultSuggestion({
+        description: messages.defaultDescription
+      })
+    } else { // else, everything is fine!
+      chrome.omnibox.setDefaultSuggestion({
+        description: messages.defaultDescription
+      })
+      if (translationsSuggests.length && suggestedTranslation.length) {
+        suggest(translationsSuggests)
+      }
     }
+
+
   })
   .catch(function(error) {
     console.log(error)
@@ -201,7 +227,7 @@ const onInputChangedListener = (text, suggest) => {
   if (query.length) {
     spinner.current = spinner.animate(function(indicator) {
       chrome.omnibox.setDefaultSuggestion({
-        description: `${messages.defaultDescription}${' '+indicator} <dim>${translateService.isRetrying ? 'Retrying...' : ''}</dim>`
+        description: `${messages.defaultDescription}${' '+indicator} <dim>${translateService.isRetrying ? `${chrome.i18n.getMessage('retrying')}…` : ''}</dim>`
       })
     })
   } else {
@@ -209,16 +235,16 @@ const onInputChangedListener = (text, suggest) => {
       description: `${messages.defaultDescription}`
     })
   }
-
+  let suggestedLanguages = []
   let words = text.split(' ')
   if (words.length === 1) {
-    let suggestedLanguages = getLanguagesSuggests(text)
+    suggestedLanguages = getLanguagesSuggests(text)
     suggest(suggestedLanguages)
   }
 
 
   abortOnChangeDebounce = false
-  debounceOnChange(sourceLanguage, targetLanguage, query, isDefault, suggest)
+  debounceOnChange(sourceLanguage, targetLanguage, query, isDefault, suggest, suggestedLanguages)
   if (words.length === 2 && !words[1] && !isDefault) {
     abortOnChangeDebounce = true
   }

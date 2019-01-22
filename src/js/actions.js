@@ -1,5 +1,22 @@
 import translateService from './translateService'
 
+export const openRegisterPage = () => {
+  chrome.tabs.create({
+    url: chrome.runtime.getURL("register.html")
+  })
+}
+
+export const openHelpPage = () => {
+  chrome.tabs.create({
+    url: chrome.runtime.getURL("help.html")
+  })
+}
+
+export const openBuyPage = () => {
+  chrome.tabs.create({
+    url: 'https://license.maximelebreton.com/bar-translate/buy'
+  })
+}
 
 const actions = {
 
@@ -10,23 +27,11 @@ const actions = {
     })
   },
 
-  openRegisterPage: () => {
-    chrome.tabs.create({
-      url: chrome.runtime.getURL("register.html")
-    })
-  },
+  openRegisterPage: openRegisterPage,
 
-  openHelpPage: () => {
-    chrome.tabs.create({
-      url: chrome.runtime.getURL("help.html")
-    })
-  },
+  openHelpPage: openHelpPage,
 
-  openBuyPage: () => {
-    chrome.tabs.create({
-      url: 'https://license.maximelebreton.com/bar-translate/buy'
-    })
-  },
+  openBuyPage: openBuyPage,
 
   openChromeWebstorePage: () => {
     chrome.tabs.create({
@@ -35,5 +40,7 @@ const actions = {
   }
 
 }
+
+
 
 export default actions
