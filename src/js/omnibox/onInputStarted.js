@@ -1,8 +1,11 @@
-import notifications from '../notifications'
-import storage from '../storage'
-import licensing from '../licensing'
+import notifications from "../notifications";
+import storage from "../storage";
+import licensing from "../licensing";
 
+/* User has started a keyword input session by typing the extension's keyword. This is guaranteed to be sent exactly once per input session, and before any onInputChanged events.
+ */
 export default chrome.omnibox.onInputStarted.addListener(function() {
+  storage.setSnapshot();
 
   /*storage.local.getValue(`${notifications.help.id}.${storage.states.hide}`)
     .then((hide) => {
@@ -21,24 +24,28 @@ export default chrome.omnibox.onInputStarted.addListener(function() {
     })
   */
 
-
-  licensing.getStorageLicense()
-    .then(license => {
-      console.info(license, 'license')
-      console.info(licensing.getLicenseMessage(license))
-      if (!license || (license && license.accessLevel === 'FREE_TRIAL')) {
-
-        //notifications.show('tryLoveBuy')
-        storage.local.getValue(`${notifications.tryLoveBuy.id}.${storage.states.alreadyNotified}`)
-        .then((alreadyNotified) => {
-
+  licensing.getStorageLicense().then(license => {
+    console.info(license, "license");
+    console.info(licensing.getLicenseMessage(license));
+    if (!license || (license && license.accessLevel === "FREE_TRIAL")) {
+      //notifications.show('tryLoveBuy')
+      storage.local
+        .getValue(
+          `${notifications.tryLoveBuy.id}.${storage.states.alreadyNotified}`
+        )
+        .then(alreadyNotified => {
           if (!alreadyNotified) {
-            notifications.show('tryLoveBuy')
-            storage.local.set(`${notifications.tryLoveBuy.id}.${storage.states.alreadyNotified}`, true)
+            notifications.show("tryLoveBuy");
+            storage.local.set(
+              `${notifications.tryLoveBuy.id}.${
+                storage.states.alreadyNotified
+              }`,
+              true
+            );
           }
-        })
+        });
 
-        /*storage.local.getValue(`${notifications.tryLoveBuy.id}.alreadyNotified`)
+      /*storage.local.getValue(`${notifications.tryLoveBuy.id}.alreadyNotified`)
           .then((alreadyNotified) => {
 
             //if (!alreadyNotified) {
@@ -47,7 +54,6 @@ export default chrome.omnibox.onInputStarted.addListener(function() {
               //storage.local.set(`${notifications.tryLoveBuy.id}.alreadyNotified`, true)
             //}
           })*/
-      }
-    })
-
-})
+    }
+  });
+});
