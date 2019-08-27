@@ -9,7 +9,8 @@ import langUtils from "./js/utils/lang";
 
 const DEFAULT_STATE = {
   targetLang: '',
-  sourceLang: ''
+  sourceLang: '',
+  secondaryTargetLang: ''
 }
 
 class BarTranslateOptions extends Component {
@@ -21,16 +22,20 @@ class BarTranslateOptions extends Component {
 
   getOptions() {
     chrome.storage.sync.get([
-    "barTranslate.targetLang", "barTranslate.sourceLang"],
+    "barTranslate.targetLang", "barTranslate.sourceLang", "barTranslate.secondaryTargetLang"],
       (data) => {
-        console.log(data, 'get')
         const targetLang = data['barTranslate.targetLang']
         const sourceLang = data['barTranslate.sourceLang']
-        if (targetLang !== null) {
+        const secondaryTargetLang = data['barTranslate.secondaryTargetLang']
+
+        if (targetLang !== undefined) {
           this.setState({targetLang})
         }
-        if (sourceLang !== null) {
+        if (sourceLang !== undefined) {
           this.setState({sourceLang})
+        }
+        if (secondaryTargetLang !== undefined) {
+          this.setState({secondaryTargetLang})
         }
 
       }
@@ -41,7 +46,8 @@ class BarTranslateOptions extends Component {
     chrome.storage.sync.set(
       {
         'barTranslate.targetLang': this.state.targetLang,
-        'barTranslate.sourceLang': this.state.sourceLang
+        'barTranslate.sourceLang': this.state.sourceLang,
+        'barTranslate.secondaryTargetLang': this.state.secondaryTargetLang
       },
       () => {
         // Update status to let user know options were saved.
@@ -51,7 +57,6 @@ class BarTranslateOptions extends Component {
           setTimeout(function() {
             status.textContent = "";
           }, 750);
-        console.log(this.state, 'saved')
       }
     );
   }
@@ -59,18 +64,20 @@ class BarTranslateOptions extends Component {
   handleSourceLang(event) {
 
     this.setState({sourceLang: event.target.value})
-    console.log(this.state)
   }
 
   handleTargetLang(event) {
 
     this.setState({targetLang: event.target.value})
-    console.log(this.state)
+  }
+
+  handleSecondaryTargetLang(event) {
+
+    this.setState({secondaryTargetLang: event.target.value})
   }
 
   handleReset() {
     this.setState(DEFAULT_STATE)
-    console.log(this.state)
   }
 
   handleSubmit(event) {
@@ -87,9 +94,9 @@ class BarTranslateOptions extends Component {
       return <form onSubmit={this.handleSubmit.bind(this)}>
       <div>
 
-      <div  style="display: flex; flex-direction: row;">
-        <div style="width: 50%; margin-right: 1rem;">
-      <h3>Source language:</h3>
+      <div  style="display: flex; flex-direction: column;">
+        <div style="width: 100%;">
+      <h3>Default source language:</h3>
       <p>By default, the source language is automagically detected</p>
       <select onChange={this.handleSourceLang.bind(this)} value={this.state.sourceLang}>
         <option value="">Automatic detection</option>
@@ -100,8 +107,8 @@ class BarTranslateOptions extends Component {
       })}
       </select></div>
 
-      <div style="width: 50%; margin-left: 1rem;">
-      <h3>Target language:</h3>
+      <div style="width: 100%;">
+      <h3>Primary target language:</h3>
       <p>By default, the target language is the browser language</p>
       <select onChange={this.handleTargetLang.bind(this)} value={this.state.targetLang}>
         <option value="">Browser language ({langNames[langUtils.getBrowserLanguage()].name})</option>
@@ -112,6 +119,22 @@ class BarTranslateOptions extends Component {
       })}
       </select>
       </div>
+
+
+      <div style="width: 100%;">
+      <h3>Secondary target language:</h3>
+      <p>If the detected source language match the primary target language, then it switch to secondary, and vice versa</p>
+      <select onChange={this.handleSecondaryTargetLang.bind(this)} value={this.state.secondaryTargetLang}>
+      <option value="">Default ({langNames[langUtils.getSecondaryAcceptedLanguage()].name})</option>
+        <option disabled>---</option>
+      {langSupport.map(lang => {
+        const name = langNames[lang].name
+        return <option value={lang}>{name}</option>
+      })}
+      </select>
+      </div>
+
+
       </div>
       </div>
 

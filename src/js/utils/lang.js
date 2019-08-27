@@ -33,6 +33,10 @@ const langUtils = {
     return uiLanguage.split("-")[0];
   },
 
+  getSplittedLang(lang) {
+    return lang.split("-")[0];
+  },
+
   /*getLangAlias(value) {
     let hasAlias = langUtils.testLanguageAlias(value)
     return hasAlias ? langAliases[value].lang : value
@@ -112,9 +116,41 @@ const langUtils = {
     return sourceLang;
   },
 
+  getStoreSecondaryTargetLang() {
+    const secondaryTargetLang =
+      (storage.snapshot &&
+        storage.snapshot["barTranslate.secondaryTargetLang"]) ||
+      null;
+    return secondaryTargetLang;
+  },
+
   getDefaultLang() {
     const storeTargetLang = langUtils.getStoreTargetLang();
     return storeTargetLang ? storeTargetLang : langUtils.getBrowserLanguage();
+  },
+
+  // TODO : synchronize this async function, or refactor the whole code to async... (return 'en' as waiting for the fix)
+  getSecondaryAcceptedLanguage() {
+    chrome.i18n.getAcceptLanguages(langList => {
+      let newLangList = langList.filter(
+        lang =>
+          langUtils.getSplittedLang(lang) !== langUtils.getBrowserLanguage()
+      );
+      console.log(newLangList, "new");
+      if (newLangList.length) {
+        return newLangList[0];
+      } else {
+      }
+    });
+    return "en";
+  },
+
+  getSecondaryLang() {
+    const storeSecondaryTargetLang = langUtils.getStoreSecondaryTargetLang();
+
+    return storeSecondaryTargetLang
+      ? storeSecondaryTargetLang
+      : langUtils.getSecondaryAcceptedLanguage();
   },
 
   extractLanguageFromQuery(text) {
